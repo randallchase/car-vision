@@ -6,21 +6,30 @@
 - Cars (make, model, year) provide valuable demographic information to advertisers.
 - Using this information, advertisers can target ads according to the predicted demographic of the drivers of cars passing a billboard.
 
-##Use Case
+## Use Case
 
-##Data Sources
+## Data Sources
 
-##Software Architecture
-- Client Application
-    - Input: Ideally tie to live video which would be far enough ahead of billboard to all time for change, but for proof of concept, use a clip of video
-    - Output: Ad chosen by proportion of cars
-- Third-party Web Service (possible)
-    - AWS Rekognition
-    - Clarifai
-    - Sighthound
-- HTTP Server
+## Software Architecture
+![](diagram.png)
+- User Interface Layer
+    - UI Components
+    - UI Process Components
+    - Camera: replicated by a folder of photos
+    - Billboard
+- Business Layer
+    - Ad choice
     - Analytics
-    - Ads shown
-    - Blockchain ledger
-- Data Store
-    - Car History
+        - Traffic
+        - Ad presentation
+- Persistence Layers
+    - Data access components
+    - 
+- Database Layer: PostgreSQL
+- Services: Algorithmia
+- Overaching components:
+    - Cloud hosting: Digital Ocean
+    - HTTP Server: express
+
+    
+        

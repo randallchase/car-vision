@@ -9,6 +9,7 @@
 ## Use Case
 
 ## Data Sources
+- PostgreSQL/Express interaction taken from: https://github.com/mjhea0/node-postgres-promises
 
 ## Software Architecture
 ![](diagram.png)
@@ -31,5 +32,6 @@
     - Cloud hosting: Digital Ocean
     - HTTP Server: express
 
+## 
     
         

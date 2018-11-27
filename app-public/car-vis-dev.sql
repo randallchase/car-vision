@@ -6,10 +6,11 @@ CREATE DATABASE car_vis_dev;
 CREATE TABLE cars_pass (
     ID SERIAL PRIMARY KEY,
     make VARCHAR,
-    model VARCHAR,
+    carModel VARCHAR,
     color VARCHAR,
-    type VARCHAR
+    vehType VARCHAR,
+    confidence DECIMAL
 );
 
-INSERT INTO cars_pass (make, model, color, type)
-    VALUES ('BMW', '2 Series', 'blue', 'car');
+INSERT INTO cars_pass (make, carModel, color, vehType, confidence)
+    VALUES ('BMW', '2 Series', 'blue', 'car', 0.2728);

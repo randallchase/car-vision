@@ -4,7 +4,7 @@
     "password": null,
     "database": "car_vis_dev",
     "host": "127.0.0.1",
-    "port": 65044,
+    "port": 5432,
     "dialect": "postgres"
   },
   "test": {

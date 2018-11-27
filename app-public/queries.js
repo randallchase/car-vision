@@ -31,6 +31,22 @@ function getAllCars(req, res, next) {
         });
 }
 
+function getImageCars(req, res, next) {
+    var imageID = parseInt(req.params.image_id);
+    db.any('SELECT make, car_model, color, veh_type, confidence from cars_pass where image_id = $1', imageID)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved image SET'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
 function getSingleCar(req, res, next) {
     var carID = parseInt(req.params.id);
     db.one('SELECT * from cars_pass where id = $1', carID)
@@ -49,8 +65,8 @@ function getSingleCar(req, res, next) {
 
 function createCar(req, res, next) {
     req.body.age = parseInt(req.body.age);
-    db.none('INSERT INTO cars_pass(make, carModel, color, vehType, confidence)' +
-        'VALUES(${make}, ${carModel}, ${color}, ${vehType}, ${confidence})',
+    db.none('INSERT INTO cars_pass(image_id, make, car_model, color, veh_type, confidence)' +
+        'VALUES(${image_id}, ${make}, ${car_model}, ${color}, ${veh_type}, ${confidence})',
         req.body)
         .then(function () {
             res.status(200)
@@ -66,8 +82,9 @@ function createCar(req, res, next) {
 
 module.exports = {
     getAllCars: getAllCars,
+    getImageCars: getImageCars,
     getSingleCar: getSingleCar,
-    createCar: createCar,
+    createCar: createCar
     // updateCar: updateCar,
     // removeCar: removeCar
 };

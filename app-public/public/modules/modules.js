@@ -47,11 +47,11 @@ ui.containers=`
         <table id="table" class="table table-sm">
             <thead>
                 <tr>
-                    <th data-field="id">#</th>
-                    <th data-field="Make">Make</th>
-                    <th data-field="Model">Model</th>
-                    <th data-field="Color">Color</th>
-                    <th data-field="Recognition Confidence">Confidence</th>
+                    <th data-field="make">Make</th>
+                    <th data-field="car_model">Model</th>
+                    <th data-field="color">Color</th>
+                    <th data-field="veh_type">Type</th>
+                    <th data-field="confidence">Confidence</th>
                 </tr>
             </thead>
     </div>
@@ -62,6 +62,7 @@ ui.containers=`
 `;
 
 var image_url = './project_images/Motor-Trend-group-photo.jpg';
+var carJSON;
 
 
 function reduceResult(res) {
@@ -69,25 +70,15 @@ function reduceResult(res) {
     res.objects.forEach(function(entry) {
         if (entry.vehicleAnnotation.attributes.system.vehicleType === 'car') {
             var singleObj = {};
-            singleObj['Make'] = entry.vehicleAnnotation.attributes.system.make.name;
-            singleObj['Model'] = entry.vehicleAnnotation.attributes.system.model.name;
-            singleObj['Color'] = entry.vehicleAnnotation.attributes.system.color.name;
-            singleObj['Recognition Confidence'] = entry.vehicleAnnotation.recognitionConfidence;
+            singleObj['make'] = entry.vehicleAnnotation.attributes.system.make.name;
+            singleObj['carModel'] = entry.vehicleAnnotation.attributes.system.model.name;
+            singleObj['color'] = entry.vehicleAnnotation.attributes.system.color.name;
+            singleObj['vehType'] = entry.vehicleAnnotation.attributes.system.vehicleType;
+            singleObj['confidence'] = entry.vehicleAnnotation.recognitionConfidence;
         }
     });
     return data
 }
-
-function ouputCarTable(res) {
-    var $table = $('#table');
-
-    $(function () {
-        $('#table').bootstrapTable({
-            data: reduceResult(res)
-        });
-    });
-}
-
 
 ui.carTable=`
     
@@ -102,9 +93,19 @@ var defaultModule = function(){
 };
 
 var loadPicture = function(){
+    var $table = $('#table');
+    var carJSON;
+    $.getJSON("http://localhost:80/api/image/1", function(json) {
+        carJSON = json.data;
+        console.log(carJSON);
+    });
+
+    $(function () {
+        $('#table').bootstrapTable({
+            data: carJSON
+        });
+    });
     target.innerHTML = ui.containers;
 };
-
-
 
 defaultModule();

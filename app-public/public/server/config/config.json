@@ -10,17 +10,17 @@
   "test": {
     "username": "Randall",
     "password": null,
-    "database": "car_vis_dev",
+    "database": "car_vis_test",
     "host": "127.0.0.1",
-    "port": 65044,
+    "port": 5432,
     "dialect": "postgres"
   },
   "production": {
     "username": "Randall",
     "password": null,
-    "database": "car_vis_dev",
+    "database": "car_vis_prod",
     "host": "127.0.0.1",
-    "port": 65044,
+    "port": 5432,
     "dialect": "postgres"
   }
 }

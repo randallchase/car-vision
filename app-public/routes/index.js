@@ -4,6 +4,7 @@ var db          = require('../queries');
 
 
 router.get('/api/cars/', db.getAllCars);
+router.get('/api/image/:image_id', db.getImageCars);
 router.get('/api/cars/:id', db.getSingleCar);
 router.post('/api/cars/', db.createCar);
 // router.put('/api/cars/:id', db.updateCar);

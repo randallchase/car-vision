@@ -11,6 +11,7 @@ router.get('/api/cars/', db.getAllCars);
 router.get('/api/image/:image_id', db.getImageCars);
 router.get('/api/cars/:id', db.getSingleCar);
 router.post('/api/cars/', db.createCar);
+router.get('/api/ads/:image_id', db.getAggData);
 
 router.post('/image', function (req, res) {
 
@@ -41,7 +42,7 @@ router.post('/image', function (req, res) {
             console.log(reducedData);
             console.log('writing cars to db');
             // Unclear what to do about this function below
-            // db.writeImageCars
+            // /**/db.writeImageCars
 
             // res.send()
         });

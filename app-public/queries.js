@@ -65,7 +65,6 @@ function getSingleCar(req, res, next) {
         });
 }
 
-
 function createCar(req, res, next) {
     req.body.age = parseInt(req.body.age);
     return db.none('INSERT INTO cars_pass(image_id, make, car_model, color, veh_type, confidence)' +
@@ -84,9 +83,21 @@ function createCar(req, res, next) {
 }
 
 function getAggData (req, res, next) {
-    req.body.age = parseInt(res.body.age);
     var imageID = parseInt(req.params.image_id);
-    db.any('SELECT * FROM agg_ad_data ')
+    var query = 'SELECT ac.cat_count as cat_count, ac.ad_category AS ad_category,a.description AS description from ad_cats a JOIN (SELECT COUNT(i.ad_category) AS cat_count, i.ad_category FROM image_car_data i WHERE i.image_id = $1 GROUP BY ad_category ORDER BY cat_count DESC) ac ON ac.ad_category = a.id';
+
+    db.any(query, imageID)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'succes',
+                    data: data,
+                    message: 'Retreived image ad stats'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        })
 }
 
 
@@ -166,7 +177,8 @@ module.exports = {
     getImageCars: getImageCars,
     getSingleCar: getSingleCar,
     createCar: createCar,
-    writeImageCars: writeImageCars
+    writeImageCars: writeImageCars,
+    getAggData: getAggData
     //analyzeImage: analyzeImage
     // updateCar: updateCar,
     // removeCar: removeCar

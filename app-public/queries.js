@@ -83,23 +83,41 @@ function createCar(req, res, next) {
         });
 }
 
+function getAggData (req, res, next) {
+    req.body.age = parseInt(res.body.age);
+    var imageID = parseInt(req.params.image_id);
+    db.any('SELECT * FROM agg_ad_data ')
+}
+
+
 function writeImageCars(req, res, next) {
     req.body.age = parseInt(res.body.age);
-    // console.log(req);
-    return db.none('INSERT INTO cars_pass(image_id, make, car_model, color, veh_type, confidence)' +
-        'VALUES((SELECT MAX(image_id) FROM cars_pass) + 1, ${make}, ${car_model}, ${veh_type}, ${confidence})',
-        req.body)
+    var cs = new pgp.helpers.ColumnSet(['make', 'car_model', 'veh_type', 'confidence'], {table: 'cars_pass'});
+    console.log(req.body);
+    var records = req.body.length;
+    var values = req.body;
+    var insert_query = pgp.helpers.insert(values, cs);
+    var update_query = 'UPDATE cars_pass SET image_id =( CASE WHEN ((SELECT MAX(image_id) FROM cars_pass) IS NULL AND image_id IS NULL) THEN 1 ELSE ((SELECT MAX(image_id) from cars_pass) + 1) END ) WHERE image_id IS NULL';
+
+    return db.tx(t => {
+        return t.batch([
+            t.none(insert_query),
+            t.none(update_query)
+        ])
+    })
         .then(function () {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Inserted ' + req.length + 'cars'
+                    message: 'Inserted ' + records + 'cars'
                 })
         })
         .catch(function (err) {
             return next(err);
         });
 }
+
+
 /*
 var image = fs.createReadStream('public/project_images/motor-trend-group.jpg');
 var cvOptions = {

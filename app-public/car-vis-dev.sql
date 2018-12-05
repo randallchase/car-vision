@@ -15,8 +15,7 @@ CREATE TABLE cars_pass (
     veh_type VARCHAR,
     confidence DECIMAL
 );
-
-
+--
 CREATE TABLE image (
     id SERIAL PRIMARY KEY,
     dtg TIMESTAMP,
@@ -40,6 +39,11 @@ CREATE TABLE image_has_cars (
     PRIMARY KEY (image_id, item_id)
 );
 --
+CREATE TABLE ad_cats (
+    id INTEGER PRIMARY KEY,
+    description VARCHAR
+);
+--
 CREATE OR REPLACE VIEW image_view AS
 SELECT i.id AS id,
 c.make as make,
@@ -52,6 +56,31 @@ FROM image i
 JOIN image_has_cars j ON j.image_id = i.id
 JOIN cars c ON c.id = j.car_id;
 --
+CREATE OR REPLACE VIEW image_car_data AS
+SELECT i.image_id as image_id,
+i.make AS make,
+i.car_model AS car_model,
+i.color AS color,
+i.veh_type AS veh_type,
+i.confidence AS confidence,
+c.ad_category AS ad_category
+FROM cars_pass i
+JOIN cars c ON c.make = i.make AND c.car_model = i.car_model AND c.color = i.color;
+--
+CREATE OR REPLACE VIEW agg_ad_data AS
+SELECT ac.cat_count as cat_count,
+ac.ad_category AS ad_category,
+a.description AS description
+from ad_cats a
+JOIN (SELECT COUNT(i.ad_category) AS cat_count,
+    i.ad_category
+    FROM image_car_data i
+    GROUP BY ad_category
+    ORDER BY cat_count DESC) ac
+ON ac.ad_category = a.id;
+
+
+;
 /*
 CREATE OR REPLACE VIEW car_count AS
 SELECT c.ad_category AS ad_category
@@ -75,10 +104,11 @@ BEGIN
     FROM cars
     WHERE make = ${1}
     AND car_model =
-    AND color = ;*/
+    AND color = ;
+    */
 
 --
-/*
+
 INSERT INTO cars_pass (image_id, make, car_model, color, veh_type, confidence)
     VALUES (1, 'BMW', '2 Series', 'blue', 'car', 0.2728),
             (1, 'Ford', 'Mustang', 'red', 'car', 0.9822),
@@ -92,6 +122,8 @@ INSERT INTO cars_pass (image_id, make, car_model, color, veh_type, confidence)
             (1, 'Chevrolet', 'Bolt', 'orange', 'car', 0.9694),
             (2, 'Honda', 'Accord', 'black', 'car', 0.6757);
 
+
+
 INSERT INTO cars (make, car_model, color, veh_type, ad_category)
     VALUES   ('BMW', '2 Series', 'blue', 'car', 1),
              ('Ford', 'Mustang', 'red', 'car', 2),
@@ -104,7 +136,13 @@ INSERT INTO cars (make, car_model, color, veh_type, ad_category)
              ('Mazda', 'CX-3', 'black', 'suv', 4),
              ('Chevrolet', 'Bolt', 'orange', 'car', 4),
              ('Honda', 'Accord', 'black', 'car', 3);
-*/
+
+INSERT INTO ad_cats (id, description)
+    VALUES  (1, 'Luxury'),
+            (2, 'Sports'),
+            (3, 'Family'),
+            (4, 'Budget');
+
 /*
 INSERT INTO image (dtg, url)
     VALUES (NOW(), 'public/project_images/motor-trend-group.jpg');

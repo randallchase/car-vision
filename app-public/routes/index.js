@@ -13,7 +13,6 @@ router.get('/api/cars/:id', db.getSingleCar);
 router.post('/api/cars/', db.createCar);
 
 router.post('/image', function (req, res) {
-    res.setTimeout(0); // no timeout
 
     if (req.body) {
         //console.log(req);
@@ -41,7 +40,8 @@ router.post('/image', function (req, res) {
             var reducedData = extractValues(jsonBody.objects);
             console.log(reducedData);
             console.log('writing cars to db');
-            db.writeImageCars
+            // Unclear what to do about this function below
+            // db.writeImageCars
 
             // res.send()
         });

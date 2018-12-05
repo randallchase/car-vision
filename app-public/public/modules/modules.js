@@ -1,3 +1,6 @@
+// card-header
+// card-body
+
 var ui = {};
 
 ui.navigation= `
@@ -13,10 +16,10 @@ ui.navigation= `
             <a class="nav-link" href="#" onclick="defaultModule()">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadPicture()">Load Picture</a>
+            <a class="nav-link" href="#" onclick="loadDashboard()">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="#">Analytics</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -40,72 +43,140 @@ ui.default = `
 `;
 
 ui.containers=`
-    <div id ="left" style="float:left; width: 25%;">
-        <img class="img-fluid" src="./project_images/motor-trend-group.jpg" width="460" height="345">
-    </div>
-    <div id ="middle" style="float:none"; width: 50%;">
-        <table id="table" class="table table-sm">
-            <thead>
-                <tr>
-                    <th data-field="make">Make</th>
-                    <th data-field="car_model">Model</th>
-                    <th data-field="color">Color</th>
-                    <th data-field="veh_type">Type</th>
-                    <th data-field="confidence">Confidence</th>
-                </tr>
-            </thead>
-    </div>
-    <div id ="right" style = "float:right; width: 25%;">
-        <h2>Placeholder<br>Insert Ad Here</h2>
-
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-block" id="traffic-image">
+        <!--Load image dynamically from the ui.carImage below-->
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block" id="car-table-card">
+          <h4 class="card-title" align="center">Cars in Image</h4>
+          <div id="toolbar">
+            <button id="table-button" class="btn btn-secondary btn-lg btn-block" align="center" onclick="onClickAnalyze()">Analyze</button>
+          </div>
+        <!--Dynamic Car table goes here from ui.carTable below-->
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title" align="center">Ad Placeholder</h4>
+          <p class="card-text">We will input the ads here as the update occurs.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
     </div>
 `;
 
-var image_url = './project_images/Motor-Trend-group-photo.jpg';
+var navigation      = document.getElementById('navigation');
+var target          = document.getElementById('target');
+
+// Load Dashboard Front Page
+var loadDashboard = function() {
+    target.innerHTML = ui.containers;
+    document.getElementById('traffic-image').innerHTML = ui.carImageCard;
+};
+
+// Load Car Image
+
+ui.carImageCard=`
+    <h4 class="card-title" align="center">Traffic Image</h4>
+    <div id="image-toolbar">
+        <button id="image-button" class="btn btn-secondary btn-lg btn-block" onclick="loadPicture()">Load Image</button>
+    </div>
+    <div id="image-placeholder"></div>
+    <p class="card-text"></p>
+    
+`;
+
+ui.carImage=`
+<img id="car-image" class="img" src="https://blockchainrandall.me/motor-trend-group.jpg" width="460" height="345">
+`;
+
+var loadPicture = function(){
+    document.getElementById('image-placeholder').innerHTML = ui.carImage;
+    console.log('get image data');
+    getImageData(1);
+    console.log('load table');
+    loadTable(carJSON);
+    //document.getElementById('car-table-card').innerHTML = ui.carTable;
+};
+
+
+var onClickAnalyze = function() {
+    console.log("button clicked");
+    var image = {image: document.getElementById("car-image").src};
+    var xmlhttp = new XMLHttpRequest();
+    var result;
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            result = xmlhttp.responseText;
+        }
+    }
+
+    xmlhttp.open("POST", "/image");
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.send(JSON.stringify(image));
+    console.log(xmlhttp);
+};
+
+// Load Image Cars Table
+/*
+ui.carTable=`
+  <table class="table table-sm" id="table" data-toggle="table" data-toolbar="#toolbar">
+    <thead>
+        <tr>
+            <th data-field="make">Make</th>
+            <th data-field="car_model">Model</th>
+            <th data-field="color">Color</th>
+            <th data-field="veh_type">Type</th>
+            <th data-field="confidence">Confidence</th>
+        </tr>
+    </thead>
+`;
+*/
+var $table, $button;
 var carJSON;
 
 
-function reduceResult(res) {
-    var data = [];
-    res.objects.forEach(function(entry) {
-        if (entry.vehicleAnnotation.attributes.system.vehicleType === 'car') {
-            var singleObj = {};
-            singleObj['make'] = entry.vehicleAnnotation.attributes.system.make.name;
-            singleObj['carModel'] = entry.vehicleAnnotation.attributes.system.model.name;
-            singleObj['color'] = entry.vehicleAnnotation.attributes.system.color.name;
-            singleObj['vehType'] = entry.vehicleAnnotation.attributes.system.vehicleType;
-            singleObj['confidence'] = entry.vehicleAnnotation.recognitionConfidence;
-        }
+var getImageData = function(imageID) {
+    $.getJSON("http://localhost:80/api/image/" + imageID, function(json) {
+        carJSON = json.data;
+        // console.log(carJSON);
+        return json.data;
     });
-    return data
-}
+};
 
-ui.carTable=`
-    
-`
 
-var target     = document.getElementById('target');
-var navigation = document.getElementById('navigation');
-navigation.innerHTML += ui.navigation;
+var loadTable = function () {
+    $(function () {
+        $table = $('#table');
+        $button = $('#table-button');
+        $button.click(function () {
+            $table.bootstrapTable('load', getImageData(1));
+        });
+        console.log($table);
+    });
+};
+
+// Load Ad
+
 
 var defaultModule = function(){
     target.innerHTML = ui.default;
 };
 
-var loadPicture = function(){
-    var $table = $('#table');
-    var carJSON;
-    $.getJSON("http://localhost:80/api/image/1", function(json) {
-        carJSON = json.data;
-        console.log(carJSON);
-    });
 
-    $(function () {
-        $('#table').bootstrapTable({
-            data: carJSON
-        });
-    });
-    target.innerHTML = ui.containers;
-};
+navigation.innerHTML += ui.navigation;
 
-defaultModule();
+loadDashboard();
+//defaultModule();

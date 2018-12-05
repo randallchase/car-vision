@@ -1,4 +1,4 @@
-/*var express = require('express');
+var express = require('express');
 var app     = express();
 var request = require("request");
 var fs      = require('fs');
@@ -18,7 +18,7 @@ app.use(cors());
 function writeCarsToDB(res) {
     // Write
 
-};
+}
 
 
 
@@ -26,6 +26,8 @@ function writeCarsToDB(res) {
 // TODO: Create a loop to cycle through the pictures and analyze, returning values.
 //
 
+
+var image = fs.createReadStream('app-public/public/project_images/motor-trend-group.jpg');
 var options = { method: 'POST',
     url: 'https://dev.sighthoundapi.com/v1/recognition',
     qs: { objectType: 'vehicle' },
@@ -46,7 +48,7 @@ request(options, function (error, response, body) {
 });
 
 
-
+/*
 // TODO: Write car event to DB
 
 var port = 8080;
@@ -58,5 +60,4 @@ app.listen(port, function() {
 // resultObj.objects[0].vehicleAnnotation.bounding.vertices
 // resultObj.objects[0].vehicleAnnotation.recognitionConfidence
 // resultObj.objects[0].vehicleAnnotation.attributes.system. // make // model // color // vehicleType
-
 */

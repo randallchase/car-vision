@@ -52,14 +52,18 @@ FROM image i
 JOIN image_has_cars j ON j.image_id = i.id
 JOIN cars c ON c.id = j.car_id;
 --
+/*
 CREATE OR REPLACE VIEW car_count AS
 SELECT c.ad_category AS ad_category
 FROM image i
 
 GROUP BY ad_category
-ORDER BY COUNT(ad_category) DESC
+ORDER BY COUNT(ad_category) DESC;
 --
-/*CREATE FUNCTION cars_and_images()
+CREATE FUNCTION cars_and_images(
+    n INTEGER,
+
+)
     RETURNS TRIGGER
 AS $$
 BEGIN
@@ -74,6 +78,7 @@ BEGIN
     AND color = ;*/
 
 --
+/*
 INSERT INTO cars_pass (image_id, make, car_model, color, veh_type, confidence)
     VALUES (1, 'BMW', '2 Series', 'blue', 'car', 0.2728),
             (1, 'Ford', 'Mustang', 'red', 'car', 0.9822),
@@ -99,7 +104,8 @@ INSERT INTO cars (make, car_model, color, veh_type, ad_category)
              ('Mazda', 'CX-3', 'black', 'suv', 4),
              ('Chevrolet', 'Bolt', 'orange', 'car', 4),
              ('Honda', 'Accord', 'black', 'car', 3);
-
+*/
+/*
 INSERT INTO image (dtg, url)
     VALUES (NOW(), 'public/project_images/motor-trend-group.jpg');
 
@@ -111,3 +117,4 @@ SELECT ad_category FROM image_view
 GROUP BY ad_category
 ORDER BY COUNT(ad_category) DESC, ad_category ASC
 LIMIT 1;
+*/

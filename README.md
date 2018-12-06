@@ -46,3 +46,8 @@
 - Setting up RESTful API with express and Postgres: 
     - https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/
     - https://github.com/mjhea0/node-postgres-promises
+
+## To Start:
+1. In command line, tye: <code>psql -f ./app-public/car-vis-dev.sql</code> to initialize postgreSQL server.
+2. Type: <code>npm run start:dev</code> to start server in development mode.
+3. Go to <code>http://localhost:80<code>

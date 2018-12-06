@@ -37,3 +37,8 @@
 - BadBank Methodology
 - Setting up the server with .bin/www/ for continuous server while developing: https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize
 - Setting up RESTful API with express and Postgres: https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/
+
+## To Start:
+1. In command line, tye: <code>psql -f ./app-public/car-vis-dev.sql</code> to initialize postgreSQL server.
+2. Type: <code>npm run start:dev</code> to start server in development mode.
+3. Go to <code>http://localhost:80<code>

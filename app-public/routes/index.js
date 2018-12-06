@@ -2,8 +2,10 @@
 var express     = require('express');
 var router      = express.Router();
 var db          = require('../queries');
-var request     = require('request');
+var request     = require('request-promise');
 var fs          = require('fs');
+var promise     = require('bluebird');
+
 
 var credentialsJSON = JSON.parse(fs.readFileSync('./credentials.json', 'utf8'));
 
@@ -23,6 +25,7 @@ router.post('/image', function (req, res) {
             method: 'POST',
             url: 'https://dev.sighthoundapi.com/v1/recognition',
             qs: { objectType: 'vehicle' },
+            promiseLib: promise,
             headers:
                 {
                     'Content-Type': 'application/json',

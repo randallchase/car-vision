@@ -1,0 +1,450 @@
+{
+  "image": {
+    "width": 800,
+    "height": 488,
+    "orientation": 1
+  },
+  "requestId": "5644aa7cccab42c4b120808dc2359c30",
+  "objects": [
+    {
+      "objectId": "_vehicle_6a31df19-6ce5-4fdd-9284-e0a253d97184",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 119,
+              "y": 171
+            },
+            {
+              "x": 362,
+              "y": 171
+            },
+            {
+              "x": 362,
+              "y": 373
+            },
+            {
+              "x": 119,
+              "y": 373
+            }
+          ]
+        },
+        "recognitionConfidence": 0.2728,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "BMW",
+              "confidence": 0.2728
+            },
+            "model": {
+              "name": "2 Series",
+              "confidence": 0.2728
+            },
+            "color": {
+              "name": "blue",
+              "confidence": 0.9995
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_788a7e56-d968-404d-949c-3bbc048f9294",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 420,
+              "y": 180
+            },
+            {
+              "x": 704,
+              "y": 180
+            },
+            {
+              "x": 704,
+              "y": 384
+            },
+            {
+              "x": 420,
+              "y": 384
+            }
+          ]
+        },
+        "recognitionConfidence": 0.9822,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Ford",
+              "confidence": 0.9822
+            },
+            "model": {
+              "name": "Mustang",
+              "confidence": 0.9822
+            },
+            "color": {
+              "name": "red",
+              "confidence": 0.9992
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_07b2b8b3-4b70-4ec9-b9f5-8f45c74fc5a0",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 12,
+              "y": 144
+            },
+            {
+              "x": 212,
+              "y": 144
+            },
+            {
+              "x": 212,
+              "y": 249
+            },
+            {
+              "x": 12,
+              "y": 249
+            }
+          ]
+        },
+        "recognitionConfidence": 0.7673,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Volkswagen",
+              "confidence": 0.7673
+            },
+            "model": {
+              "name": "GTI",
+              "confidence": 0.7673
+            },
+            "color": {
+              "name": "red",
+              "confidence": 0.9997
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_22c8a858-0c03-473b-acd2-3ce61c7c1c21",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 193,
+              "y": 123
+            },
+            {
+              "x": 276,
+              "y": 123
+            },
+            {
+              "x": 276,
+              "y": 161
+            },
+            {
+              "x": 193,
+              "y": 161
+            }
+          ]
+        },
+        "recognitionConfidence": 0.2643,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Mazda",
+              "confidence": 0.2643
+            },
+            "model": {
+              "name": "MX-5 Miata",
+              "confidence": 0.2643
+            },
+            "color": {
+              "name": "silver/grey",
+              "confidence": 0.9859
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_620017f2-ab6d-4efc-868f-828839419e70",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 279,
+              "y": 132
+            },
+            {
+              "x": 359,
+              "y": 132
+            },
+            {
+              "x": 359,
+              "y": 179
+            },
+            {
+              "x": 279,
+              "y": 179
+            }
+          ]
+        },
+        "recognitionConfidence": 0.1697,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Chevrolet",
+              "confidence": 0.1697
+            },
+            "model": {
+              "name": "Corvette",
+              "confidence": 0.1697
+            },
+            "color": {
+              "name": "red",
+              "confidence": 0.9997
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_9313512e-4bcd-4f2f-b473-2bc778bc11f1",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 493,
+              "y": 124
+            },
+            {
+              "x": 580,
+              "y": 124
+            },
+            {
+              "x": 580,
+              "y": 159
+            },
+            {
+              "x": 493,
+              "y": 159
+            }
+          ]
+        },
+        "recognitionConfidence": 0.3668,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Porsche",
+              "confidence": 0.3668
+            },
+            "model": {
+              "name": "911",
+              "confidence": 0.3668
+            },
+            "color": {
+              "name": "red",
+              "confidence": 0.9995
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_6e6ead56-ba75-41ab-88e3-14de9e0446e5",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 661,
+              "y": 122
+            },
+            {
+              "x": 765,
+              "y": 122
+            },
+            {
+              "x": 765,
+              "y": 160
+            },
+            {
+              "x": 661,
+              "y": 160
+            }
+          ]
+        },
+        "recognitionConfidence": 0.3162,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Honda",
+              "confidence": 0.3162
+            },
+            "model": {
+              "name": "Accord",
+              "confidence": 0.3162
+            },
+            "color": {
+              "name": "red",
+              "confidence": 0.999
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_729e3e3f-ef9c-45e4-9fd1-0db70f76ad77",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 23,
+              "y": 121
+            },
+            {
+              "x": 136,
+              "y": 121
+            },
+            {
+              "x": 136,
+              "y": 161
+            },
+            {
+              "x": 23,
+              "y": 161
+            }
+          ]
+        },
+        "recognitionConfidence": 0.675,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Chevrolet",
+              "confidence": 0.675
+            },
+            "model": {
+              "name": "Camaro",
+              "confidence": 0.675
+            },
+            "color": {
+              "name": "green",
+              "confidence": 0.9993
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_6912eb9d-f392-4f05-96b4-f89f1003167c",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 409,
+              "y": 126
+            },
+            {
+              "x": 490,
+              "y": 126
+            },
+            {
+              "x": 490,
+              "y": 181
+            },
+            {
+              "x": 409,
+              "y": 181
+            }
+          ]
+        },
+        "recognitionConfidence": 0.138,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Mazda",
+              "confidence": 0.138
+            },
+            "model": {
+              "name": "CX-3",
+              "confidence": 0.138
+            },
+            "color": {
+              "name": "black",
+              "confidence": 0.3973
+            },
+            "vehicleType": "suv"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    },
+    {
+      "objectId": "_vehicle_9740ea90-c5a4-4d78-9e5a-ac00b481497e",
+      "vehicleAnnotation": {
+        "bounding": {
+          "vertices": [
+            {
+              "x": 571,
+              "y": 139
+            },
+            {
+              "x": 776,
+              "y": 139
+            },
+            {
+              "x": 776,
+              "y": 255
+            },
+            {
+              "x": 571,
+              "y": 255
+            }
+          ]
+        },
+        "recognitionConfidence": 0.9694,
+        "attributes": {
+          "system": {
+            "make": {
+              "name": "Chevrolet",
+              "confidence": 0.9694
+            },
+            "model": {
+              "name": "Bolt",
+              "confidence": 0.9694
+            },
+            "color": {
+              "name": "orange",
+              "confidence": 0.9941
+            },
+            "vehicleType": "car"
+          }
+        }
+      },
+      "objectType": "vehicle"
+    }
+  ]
+}

@@ -5,16 +5,10 @@ var options = {
     promiseLib: promise
 };
 
-var fs = require('fs');
-var path = require('path');
-var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || 'development';
 var config = require(`${__dirname}/public/server/config/config.json`)[env];
-var credentialsJSON = require(`${__dirname}/credentials.json`, 'utf8');
-var request = require('request-promise');
 
 const pgp = require('pg-promise')(options);
-
 var db = pgp(config);
 
 
@@ -129,49 +123,6 @@ function writeImageCars(req, res, next) {
 }
 
 
-/*
-var image = fs.createReadStream('public/project_images/motor-trend-group.jpg');
-var cvOptions = {
-    method: 'POST',
-    url: 'https://dev.sighthoundapi.com/v1/recognition',
-    qs: { objectType: 'vehicle' },
-    headers:
-        {
-            'Content-Type': 'application/octet-stream',
-            'X-Access-Token': credentialsJSON['sighthound-key']
-        },
-    body: image
-};
-
-
-function extractValues(response) {
-    let reducedData = [];
-    response.objects.forEach(function(element) {
-        let tempData = {};
-        tempData['make']        = element.vehicleAnnotation.attributes.system.make.name;
-        tempData['car_model']   = element.vehicleAnnotation.attributes.system.model.name;
-        tempData['color']       = element.vehicleAnnotation.attributes.system.color.name;
-        tempData['veh_type']    = element.vehicleAnnotation.attributes.system.vehicleType;
-        tempData['confidence']  = element.vehicleAnnotation.attributes.recognitionConfidence;
-        reducedData.append(tempData);
-    });
-    return reducedData;
-}
-
-function analyzeImage(options) {
-    return request(options)
-        .then(function (response) {
-            return extractValues(response);
-        })
-        .catch(function (err) {
-            return err;
-        });
-}
-
-analyzeImage(cvOptions)
-    .then(extractValues(result))
-    .then(createCar())
-*/
 module.exports = {
     getAllCars: getAllCars,
     getImageCars: getImageCars,
@@ -179,7 +130,4 @@ module.exports = {
     createCar: createCar,
     writeImageCars: writeImageCars,
     getAggData: getAggData
-    //analyzeImage: analyzeImage
-    // updateCar: updateCar,
-    // removeCar: removeCar
 };

@@ -79,34 +79,6 @@ JOIN (SELECT COUNT(i.ad_category) AS cat_count,
     ORDER BY cat_count DESC) ac
 ON ac.ad_category = a.id;
 
-
-;
-/*
-CREATE OR REPLACE VIEW car_count AS
-SELECT c.ad_category AS ad_category
-FROM image i
-
-GROUP BY ad_category
-ORDER BY COUNT(ad_category) DESC;
---
-CREATE FUNCTION cars_and_images(
-    n INTEGER,
-
-)
-    RETURNS TRIGGER
-AS $$
-BEGIN
-    INSERT INTO image_has_cars (image_id) VALUES
-
---BEGIN
-    INSERT INTO image_has_cars (car_id)
-    SELECT car_id
-    FROM cars
-    WHERE make = ${1}
-    AND car_model =
-    AND color = ;
-    */
-
 --
 
 INSERT INTO cars_pass (image_id, make, car_model, color, veh_type, confidence)
@@ -143,16 +115,3 @@ INSERT INTO ad_cats (id, description)
             (3, 'Family'),
             (4, 'Budget');
 
-/*
-INSERT INTO image (dtg, url)
-    VALUES (NOW(), 'public/project_images/motor-trend-group.jpg');
-
-INSERT INTO image_has_cars (image_id, item_id, car_id, confidence)
-    VALUES  (1, 1, 4, 0.2643),
-            (1, 2, 1, 0.2728);
-
-SELECT ad_category FROM image_view
-GROUP BY ad_category
-ORDER BY COUNT(ad_category) DESC, ad_category ASC
-LIMIT 1;
-*/
